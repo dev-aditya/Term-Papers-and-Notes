@@ -1,3 +1,9 @@
 # Term-Papers-and-Notes
-This repository contains my Term Ppaer reports and some extra files. I made during my course work at IISER Mohali. 
-One missing from this file can be found  at https://github.com/dev-aditya/Neutrino-Mass-Models-PHY655-TermPaper
+Hi there! 👋
+
+This repository is a treasure trove of my term paper reports and other goodies I created during my coursework at IISERM. I've carefully curated this collection, ensuring it's packed with valuable insights and resources.
+
+Oh, and if you happen to notice a missing file, don't fret! You can find the one missing here: [https://github.com/xxxTermPaper](https://github.com/dev-aditya/Neutrino-Mass-Models-PHY655-TermPaper).
+
+I hope you find these resources helpful, whether you're a fellow student seeking knowledge or simply me revisiting my past work.
+Happy learning! 📚
