@@ -1,0 +1,202 @@
+\documentclass{beamer} 
+\usepackage{xcolor}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{graphicx}
+\newcommand{\ket}[1]{\left|#1\right \rangle}
+\newcommand{\bra}[1]{\left\langle#1\right |}
+\newcommand{\inner}[2]{\left\langle#1|#2\right\rangle}
+\renewcommand{\exp}[1]{\mathsf{e}^{#1}}
+\usepackage{hyperref}
+\graphicspath{{./images/}}
+\usepackage{booktabs}
+\usepackage{theme}
+\setUPCLayout{draft,newlogo}
+
+\newcommand{\nologo}{\setbeamertemplate{logo}{}} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Info %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\title{Analogy between Classical Canonical Transformations and Quantum Unitary Evolution}	
+	% author 
+    % (In the mandatory argument "{}", separate multiple
+    % authors with "\and" - use "\\" for better author name formatting
+    % in the title page. In the optional argument "[]" include all
+	% author names, with no "\and" or text formatting macros.)
+	% Example: 
+    %\author[A. Author Albert Einstein]{Anthony Author \and Albert Einstein}
+	\author[Abbr]{\large{IDC412: Seminar Delivery} \\
+  [5pt] {\Large Aditya Dev} \\
+  [5pt] \texttt{MS19022}}
+    % Address
+   \subtitle{\textsc{Genesis of Path Integral Formulation}}
+   \logo{\AddToShipoutPictureFG{
+      \AtPageMyLowerLeft{{\includegraphics[height=0.4cm,keepaspectratio]{\smalllogo}}}
+    }}
+	\institute{%{\includegraphics[height=2cm,keepaspectratio]{\fulllogo}} \\[5pt]
+ {Department of Physical Sciences}\\
+ [5pt]\textsc{Indian Institute of Science Education and Research Mohali} \\
+        [5pt]{Email: \texttt{ms19022@iisermohali.ac.in} }
+        }
+	% date
+		\presentationDate{February 24, 2023}
+%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% typeset front slides
+
+\typesetFrontSlides
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   SECTION 1
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+\section{Introduction}
+
+
+
+\begin{frame}{Introduction}
+%\framesubtitle{}
+\begin{itemize}
+    \item  Quantum mechanics is built on the analogy with Hamiltonian theory of classical mechanics.
+    \item  Canonical coordinates and momenta have simple quantum analogues which allow for the Hamiltonian theory to be transferred into quantum mechanics in all its details.
+    \item There is an alternative formulation for classical dynamics called the Lagrangian method, which is believed to be more fundamental.
+    \item The Lagrangian method allows for all the equations of motion to be expressed as the stationary property of a certain action function, which can be expressed relativistically.
+\end{itemize}
+\end{frame}
+\begin{frame}{What's the problem then?}
+ \begin{itemize}
+     \item It is not possible to take over the classical Lagrangian equations in a direct way in quantum mechanics as partial derivatives of the Lagrangian with respect to coordinates (\textit{as they are operators in QM}) and velocities have no meaning.
+    \item The only differentiation process that can be carried out in quantum mechanics is that of forming commutation relation, which leads to the Hamiltonian Poission brackets. 
+    \item Thus, a quantum Lagrangian theory must be formulated indirectly. The ideas of the classical Lagrangian theory, rather than the equations, must be adopted.
+ \end{itemize}
+\end{frame}
+
+\section{Canonical Transformations in Classical Mechanics}
+\subsection{Hamilton-Jacobi Theory}
+\begin{frame}{The Hamilton-Jacobi Equation}
+     A \textbf{canonical transformation} is a change of canonical coordinates \((q, p, t) \to (Q, P, t)\) that preserves the form of Hamilton's equations. The Action Integral over the Lagrangian  \({\mathcal {L}}_{qp}=\mathbf {p} \cdot {\dot {\mathbf {q} }}-H(\mathbf {q} ,\mathbf {p} ,t)\) and  \(
+     {\mathcal {L}}_{{QP}}={\mathbf {P}}\cdot {\dot {{\mathbf {Q}}}}-K({\mathbf {Q}},{\mathbf {P}},t)
+     \) respectively, obtained by the Hamiltonian via (``inverse") Legendre transformation, both must be stationary\footnote{Canonical transformation.  \href{https://en.wikipedia.org/wiki/Canonical_transformation}{In Wikipedia.}}, i.e.
+\begin{equation}
+\label{eq:action_variation}
+\delta \int _{t_{1}}^{t_{2}}\left[\mathbf {p} \cdot {\dot {\mathbf {q} }}-H(\mathbf {q} ,\mathbf {p} ,t)\right]dt = \delta \int _{t_{1}}^{t_{2}}\left[\mathbf {P} \cdot {\dot {\mathbf {Q} }}-K(\mathbf {Q} ,\mathbf {P} ,t)\right]dt =0
+    \end{equation}
+    Which implies:
+    \begin{equation}
+        \label{eq:canonical_hamiltonian}
+        p \dot{q} -  H =  P \dot{Q} - K +  \dfrac{d S}{d t}
+    \end{equation}
+\end{frame}
+\begin{frame}{Generating Function and Hamilton's Principal Function}
+    We consider the case when the transformation function \(S\) depends on the old and on the new coordinates:
+    \begin{equation}
+        \label{eq:principle_func}
+        S = S(q_1, q_2, \hdots, Q_1, Q_2 \hdots ).
+    \end{equation}
+     From Eq~\ref{eq:canonical_hamiltonian} and~\ref{eq:principle_func}, and using Hamiltonian equation of motion, it follows
+    \begin{equation}
+    \label{eq:class_trans_eq1}
+    p_r = \dfrac{\partial S}{\partial q_r}, \quad P_r = -\dfrac{\partial S}{\partial Q_r}
+\end{equation}
+In Hamilton-Jacobi theory where the canonical transformation is such that \(K\) is identically zero i.e. (\(K = 0\)), it can be shown that\footnote{Goldstein, H., Et al. (2001). Classical mechanics third edition. Eq 10.13}: 
+\begin{equation}
+    \label{eq:action_eq_generator}
+    \boxed{S = \int L dt + \mathrm{const.}}, \quad L \mathrm{= Lagrangian}
+\end{equation}
+
+    %The contact transformation is defined by the relation between the differentials 
+    %\begin{equation}
+     %   \sum_{r = 1}^{N} p_r dq_r - \sum_{r = 1}^{N}P_r dQ_r = dS
+    %\end{equation}
+   
+\end{frame}
+\section{``Canonical" transformations in Quantum Mechanics}
+\subsection{Motivation}
+\begin{frame}{Coordinate transformation in Quantum Mechanics}
+\begin{itemize}
+    \item In the quantum theory we may take a representation in which the q’s are diagonal, and a second representation in which the Q’s are diagonal.
+    \item The contact (canonical) transformation thus defined corresponds in quantum mechanics to a unitary transformation from the representation in which the quantities q are ``diagonal" to the representation in which the quantities Q are ``diagonal".
+    \item There will be a transformation function  connecting the two representations. 
+\end{itemize}
+\end{frame}
+\subsection{Transition from Classical to Quantum Mechanics}
+\begin{frame}{Some Quantum Algebra!!}
+
+To find the transformation function let's \(\mathcal{\hat{\alpha}}\) be a function of dynamical variables in QM, then we may evaluate:
+\begin{equation}
+    \label{eq:alpha_trans}
+    \bra{q}\mathcal{\hat{A}}\ket{Q} = \underbrace{\int dq' \bra{q} \mathcal{\hat{A}} \ket{q'}\inner{q'}{Q}}_{\text{Eq 6.1}} = \underbrace{\int dQ' \inner{q}{Q'} \bra{Q'}\mathcal{\hat{A}} \ket{Q}}_{\text{Eq 6.2}} 
+\end{equation}
+\textbf{\textit{We shall now show that this transformation function $\inner{q}{Q}$ is the quantum analogue of $\exp{i S/\hbar}$}}
+\end{frame}
+
+\begin{frame}{Quantum Theory (cont...)}
+    We know that imposing the commutation relation on position and momentum operator lead to the below equations:
+    \begin{equation}
+        \label{eq:commutator}
+        \left[ \hat{q}, \hat{p}\right] = i \hbar \longleftrightarrow \bra{q}\hat{p}\ket{\psi} = -i\hbar \dfrac{\partial \inner{q}{\psi}}{\partial q}
+    \end{equation}
+    From the definitions in Eq~\ref{eq:alpha_trans}.1 we obtain:
+   \begin{equation}
+   \label{eq:qr_evo}
+    \bra{q}\hat{q_r}\ket{Q} = q_r \inner{q}{Q}
+    \end{equation}
+    \begin{equation}
+        \label{eq:pr_evo}
+        \bra{q}{\hat{p_r}}\ket{Q} = -i \hbar \dfrac{\partial \inner{q}{Q}}{\partial q_r}
+    \end{equation}
+    similarly  from the definitions in Eq~\ref{eq:alpha_trans}.2 we obtain:
+    \begin{equation}
+    \label{eq:Qr_evo}
+    \bra{q}\hat{Q_r}\ket{Q} = Q_r \inner{q}{Q}
+    \end{equation}
+    \begin{equation}
+    \label{eq:Pr_evo}
+        \bra{q}{\hat{P_r}}\ket{Q} = i \hbar \dfrac{\partial \inner{q}{Q}}{\partial Q_r}
+    \end{equation}
+\end{frame}
+\begin{frame}{The Postulate!}
+    Now it's turn for \textbf{the Postulate!}. In Eq~\ref{eq:pr_evo} we put:
+    \begin{equation}
+    \label{eq:postulate}
+        \boxed{\inner{q}{Q} = \exp{iU/\hbar}}
+    \end{equation}
+    where \(U\) is a new function of q's and Q's, we get from Eq~\ref{eq:pr_evo}
+    \begin{equation}
+        \label{eq:pr_postulate}
+        \bra{q}{\hat{p_r}}\ket{Q} =  \dfrac{\partial U}{\partial q_r}\inner{q}{Q}
+    \end{equation}
+    and similarly from Eq~\ref{eq:Pr_evo}, we obtain:
+    \begin{equation}
+         \label{eq:Pr_postulate}
+        \bra{q}{\hat{P_r}}\ket{Q} =  - \dfrac{\partial U}{\partial Q_r}\inner{q}{Q}
+    \end{equation}
+\end{frame}
+\begin{frame}{Ta Daaa!}
+    Comparing Eq~\ref{eq:pr_postulate}  \&~\ref{eq:Pr_postulate} with Eq~\ref{eq:class_trans_eq1}
+    we see that:
+    \begin{equation}
+    \boxed{ p_r = \dfrac{\partial U}{\partial q_r}, \quad P_r = -\dfrac{\partial U}{\partial Q_r}}
+    \end{equation}
+    which are exactly like the canonical transformation!!!! 
+
+    And as shown in Eq~\ref{eq:action_eq_generator} the \(U\) is nothing but the action; hence we get the familiar transition amplitude as
+    \begin{equation}
+        \boxed{\inner{q}{Q} \sim \exp{{i \over \hbar}\int L dt}} 
+    \end{equation}
+\end{frame}
+
+\section{Refrences}
+\begin{frame}{References}
+\nocite{*}
+\bibliographystyle{unsrt}
+\bibliography{bibliography.bib}
+\end{frame}
+
+%%
+\end{document}

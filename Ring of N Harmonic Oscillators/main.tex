@@ -1,0 +1,302 @@
+\documentclass[pre,floatfix,onecolumn]{revtex4-2}
+
+\usepackage{geometry}
+\usepackage{titlesec}
+% Format section headings with sans-serif font
+\titleformat{\section}
+{\large\bfseries\sffamily}
+{\thesection}{1em}{}
+% Format subsection headings with sans-serif font
+\titleformat{\subsection}
+{\bfseries\sffamily}
+{\thesubsection}{1em}{}
+
+% Format subsubsection headings with sans-serif font
+\titleformat{\subsubsection}
+{\bfseries\sffamily}
+{\thesubsubsection}{1em}{}
+\usepackage{graphicx}% Include figure files
+\usepackage{mathtools, amssymb}
+\usepackage{xcolor}
+\usepackage{newcomputermodern}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks = true,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+\begin{document}
+\title{\Large \bfseries \sffamily Ring of N Classical \& Quantum Harmonic Oscillators}% Force line breaks with \\
+
+\author{Aditya Dev}
+\email{adityadev@tuta.io}
+\affiliation{Department of Physical Sciences, Indian Institute of Science Education and Research Mohali}%
+
+\date{\today}% It is always \today, today,
+             %  but any date may be explicitly specified
+
+
+\begin{abstract}
+This text focuses on N coupled oscillators, in both the classical and quantum case. In the classical scenario, a ring of coupled harmonic oscillators is analyzed using normal modes. The solution involves eigenvalues and eigenvectors of a matrix, which gives a basis for solutions expressed as a superposition of normal modes. In the quantum case, the system evolves from discrete (ring of identical simple harmonic oscillators) to continuum scenarios. The discretization into a finite number of oscillators leads to a description in terms of creation/annihilation operators in both position and momentum space. Transitioning to the continuum case involves taking the limit, yielding an integral over position space. The quantum dynamics are further explored, leading to the derivation of the amplitude for finding a particle at different positions after a certain time, expressed initially in the discrete and then in the continuum limit. Special attention is given to the interpretation of the amplitude and its implications in terms of the particle's movement around the ring. Finally, the discussion hints at the emergence of a theory of quantum fields to describe particle movement.
+\end{abstract}
+\maketitle
+\tableofcontents
+
+\section{The Classical Oscillator}
+The equation of motion for the $n$th oscillator in a ring of $N$ coupled classical harmonic oscillators is given by
+
+\begin{align}
+\ddot{q}_{n} = \frac{k}{m}\left(q_{n+1} + q_{n-1} - 2 q_{n}\right)
+\end{align}
+
+where $n=n+N$ and a dot denotes differentiation with respect to time. This can be written more compactly as
+
+\begin{align}
+\ddot{\mathbf{q}} = -K \mathbf{q}
+\end{align}
+
+where $\mathbf{q}$ is a vector of displacements of individual oscillators at time $t$ and $K$ is the matrix with components
+
+\begin{align}
+K_{i j} = \frac{k}{m}\left(2 \delta_{i j} - \delta_{i+1, j} - \delta_{i-1, j}\right)
+\end{align}
+
+with $\delta_{i j}$ the Kronecker delta. To solve this equation, we can use the method of normal modes, where we assume that every oscillator oscillates with the same frequency $\omega$, that is,
+
+\begin{align}
+\mathbf{q}(t) = \mathbf{A} \cos (\omega t-\delta)
+\end{align}
+
+where $\delta$ is a phase. Hence,
+
+\begin{align}
+\omega^{2} \mathbf{A} = K \mathbf{A} \quad \Rightarrow \quad \operatorname{det}\left(K-\omega^{2} \mathbb{1}\right) = 0
+\end{align}
+
+where $\mathbb{1}$ is the $N \times N$ identity matrix. Therefore, the normal mode frequencies will be given by the eigenvalues of the matrix $K$, and $\mathbf{A}$ will be given by the eigenvectors. Since this specifies a basis for solutions, a general solution will be of the form
+
+\begin{align}
+\mathbf{q}(t) = \sum_{i} a_{i} \mathbf{A}_{i} \cos \left(\omega_{i} t-\delta\right) \\
+= \sum_{i} \left(\alpha_{i} \mathbf{A}_{i} \cos \left(\omega_{i} t\right) + \beta_{i} \mathbf{A}_{i} \sin \left(\omega_{i} t\right)\right)
+\end{align}
+
+where $i$ runs over the number of normal modes and $\alpha_{i}$ and $\beta_{i}$ are constants. Thus, our differential equation turns into a set of algebraic equations that we can solve given initial conditions.
+
+\section{The Quantum Oscillator}
+\subsection{Discrete Case}
+Start with a ring of $N$ identical simple (classical) harmonic oscillators with equilibrium separation $\epsilon$. The Hamiltonian is given by
+
+\begin{align}
+H = \sum_{n=0}^{N-1}\left(\frac{p_{n}^{2}}{2 m} + \frac{\alpha}{2}\left(q_{n+1} - q_{n}\right)^{2}\right)
+\end{align}
+
+The periodicity constraint implies $n=n+N$. To solve, take positions and momenta to Fourier space
+\begin{equation}
+    \begin{gathered}
+    p_{n} = \frac{1}{\sqrt{N}} \sum_{j=-N / 2}^{N / 2} e^{-i k_{j} x_{n}} \tilde{p}_{j}
+,
+     q_{n} = \frac{1}{\sqrt{N}} \sum_{j=-N / 2}^{N / 2} e^{-i k_{j} x_{n}} \tilde{q}_{j}
+\end{gathered}
+\end{equation}
+
+where $k_{j} \equiv \frac{2 \pi j}{N \epsilon}, \quad x_{n} \equiv n \epsilon $
+
+First, we look at the kinetic energy term 
+\begin{equation}
+\begin{aligned}
+    T = \frac{1}{2 m N} \sum_{n=0}^{N-1} \sum_{j=-N / 2}^{N / 2} \sum_{i=-N / 2}^{N / 2} e^{-i x_{n}\left(k_{j}+k_{i}\right)} \tilde{p}_{j} \tilde{p}_{i} = \sum_{-N / 2}^{N / 2} \frac{\left|\tilde{p}_{j}\right|^{2}}{2 m}
+\end{aligned}
+    \end{equation}
+
+
+where the orthonormality of the basis functions as well as $p_{n} \in \mathbb{R}$ were used
+
+\begin{align}
+\frac{1}{N} \sum_{n=0}^{N-1} e^{-i x_{n}\left(k_{j}-k_{i}\right)} = \delta_{i j}, \quad \tilde{p}_{-j} = \tilde{p}_{j}^{*} \text { for } p_{n} \in \mathbb{R}
+\end{align}
+
+Now, the potential energy term.
+
+\begin{widetext}
+    \begin{align}
+V = \frac{\alpha}{2 N} \sum_{n=0}^{N-1} \sum_{j=-N / 2}^{N / 2} \sum_{i=-N / 2}^{N / 2}\left[e^{-i x_{n+1}\left(k_{i}+k_{j}\right)} \tilde{q}_{i} \tilde{q}_{j}\right. 
+ +e^{-i x_{n}\left(k_{i}+k_{j}\right)} \tilde{q}_{i} \tilde{q}_{j} 
+\\\left.-\left(e^{-i\left(k_{i} x_{n}+k_{j} x_{n+1}\right)}+e^{-i\left(k_{j} x_{n}+k_{i} x_{n+1}\right)}\right) \tilde{q}_{i} \tilde{q}_{j}\right]
+    \end{align}
+\end{widetext}
+
+
+Here, the symmetry of the sums over $i$ and $j$ are used to re-index the term in parenthesis. Focusing on this term, we use the periodicity of $n$ to re-index the $x_{n}$ 's using $x_{n \pm 1}=(n \pm 1) \epsilon$
+
+\begin{equation}
+    \begin{gathered}
+        \sum_{n=0}^{N-1}\left(e^{-i\left(k_{i} x_{n}+k_{j} x_{n+1}\right)}+e^{-i\left(k_{j} x_{n-1}+k_{i} x_{n}\right)}\right) \\
+= \sum_{n=0}^{N-1} e^{-i x_{n}\left(k_{i}+k_{j}\right)}\left(e^{-i k_{j} \epsilon}+e^{i k_{j} \epsilon}\right) \\
+= 2 N \cos \left(k_{j} \epsilon\right) \delta_{i,-j}
+    \end{gathered}
+\end{equation}
+
+which gives
+
+\begin{align}
+V = \frac{\alpha}{2} \sum_{j=-N / 2}^{N / 2} 2\left(1-\cos \left(k_{j} \epsilon\right)\right)\left|\tilde{q}_{j}\right|^{2} \equiv \sum_{j=-N / 2}^{N / 2} \frac{m \omega_{j}^{2}}{2}\left|\tilde{q}_{j}\right|^{2} 
+\end{align}
+where \(\omega_{j}^{2} \equiv \frac{2 \alpha}{m}\left(1-\cos \left(k_{j} \epsilon\right)\right)\).
+
+
+Now, we just quantize by upgrading $\tilde{q}_{j} \rightarrow \tilde{Q}_{j}$ and $\tilde{p}_{j} \rightarrow \tilde{P}_{j}$ where $\tilde{Q}_{j}$ and $\tilde{P}_{j}$ are Hermitian operators that satisfy
+
+\begin{align}
+\left[\tilde{Q}_{j}, \tilde{P}_{j^{\prime}}\right]=i \delta_{j j^{\prime}}
+\end{align}
+
+We then define creation and annihilation operators.
+
+\begin{align}
+\tilde{Q}_{j} = \frac{1}{\sqrt{2 m \omega_{j}}}\left(\tilde{a}_{j}^{\dagger}+\tilde{a}_{j}\right), , \quad \tilde{P}_{j} = i \sqrt{\frac{m \omega_{j}}{2}}\left(\tilde{a}_{j}^{\dagger}-\tilde{a}_{j}\right)
+\end{align}
+
+which satisfy
+
+\begin{align}
+\left[\tilde{a}_{j}, \tilde{a}_{j^{\prime}}^{\dagger}\right] = \delta_{j j^{\prime}}, \quad\left[\tilde{a}_{j}, \tilde{a}_{j^{\prime}}\right] = \left[\tilde{a}_{j}^{\dagger}, \tilde{a}_{j^{\prime}}^{\dagger}\right]=0
+\end{align}
+
+giving the Hamiltonian of $N$ QHO's
+
+\begin{align}
+H = \sum_{j=-N / 2}^{N / 2} \omega_{j}\left(\tilde{a}_{j}^{\dagger} \tilde{a}_{j}+\frac{1}{2}\right)
+\end{align}
+
+This Hamiltonian acts on the Fock space of states.
+
+\begin{align}
+|\psi\rangle = \bigotimes_{j=-N / 2}^{N / 2}\left|n_{j}\right\rangle \equiv\left|n_{(-N / 2)}, n_{(-(N-1) / 2)}, \ldots, n_{N / 2}\right\rangle
+\end{align}
+
+where $n_{j}$ is the number of quanta of energy in mode $j$. Now, we want to find the creation/annihilation operators in position space. We may guess they take the form
+
+\begin{align}
+a_{n} = \frac{1}{\sqrt{N}} \sum_{j=-N / 2}^{N / 2} e^{-i k_{j} x_{n}} \tilde{a}_{j}, \quad a_{n}^{\dagger} = \frac{1}{\sqrt{N}} \sum_{j=-N / 2}^{N / 2} e^{i k_{j} x_{n}} \tilde{a}_{j}^{\dagger}
+\end{align}
+
+We check that these do indeed satisfy the correct commutation relations for creation/annihilation operators
+
+\begin{align}
+\left[a_{n}, a_{n^{\prime}}^{\dagger}\right] = \frac{1}{N} \sum_{j=-N / 2}^{N / 2} \sum_{i=-N / 2}^{N / 2} e^{-i\left(k_{j} x_{n}-k_{i} x_{n^{\prime}}\right)}\left[\tilde{a}_{j}, \tilde{a}_{i}^{\dagger}\right] 
+= \frac{1}{N} \sum_{j=-N / 2}^{N / 2} e^{-i k_{j}\left(x_{n}-x_{n^{\prime}}\right)} = \delta_{n n^{\prime}}
+\end{align}
+
+with all other commutation relations vanishing as expected. With this, we place a single quanta of energy in the $n^{\text {th}}$ position by acting on the vacuum with $a_{n}^{\dagger}$
+
+\begin{align}
+\left|\psi_{n}\right\rangle = a_{n}^{\dagger}|0\rangle = \frac{1}{\sqrt{N}} \sum_{j=-N / 2}^{N / 2} e^{i k_{j} x_{n}} \tilde{a}_{j}^{\dagger}|0\rangle \\ 
+= \frac{1}{\sqrt{N}} \sum_{j=-N / 2}^{N / 2} e^{i k_{j} x_{n}}|j\rangle
+\end{align}
+
+where $|j\rangle \equiv|0,0, \ldots, 1, \ldots, 0,0\rangle$ with a 1 in the $j^{\text {th }}$ mode. Now, we want to time-evolve this state with the Hamiltonian and find the amplitude for the particle to be at some different position, $m$. Neglecting the zero-point energy, the energy of the single-quanta state $j$ is given by
+
+\begin{align}
+H|j\rangle = E_{j}|j\rangle = \omega_{j}|j\rangle
+\end{align}
+
+So, our desired amplitude is given by
+
+\begin{widetext}
+\begin{equation}
+\boxed{\left\langle\psi_{m}\left|e^{-i H t}\right| \psi_{n}\right\rangle = \frac{1}{N} \sum_{j=-N / 2}^{N / 2} e^{i k_{j}\left(x_{n}-x_{m}\right)} e^{-i \omega_{j} t} \
+= \frac{1}{N} \sum_{j=-N / 2}^{N / 2} e^{i \frac{2 \pi j}{N}(n-m)} e^{-i \omega_{j} t}}
+\end{equation}
+\end{widetext}
+
+\subsection{Continuum Case}
+
+Let's study this more explicitly in the continuum case. When we take $\epsilon \rightarrow 0$, we write our Hamiltonian as
+
+\begin{align}
+H = \sum_{n=0}^{N-1} \epsilon\left(\frac{p_{n}^{2}}{2 m \epsilon}+\frac{\alpha \epsilon}{2}\left(\frac{q_{n+1}-q_{n}}{\epsilon}\right)^{2}\right)
+\end{align}
+
+Now, when we take the limit, our position and momentum variables become functions of $x$ and $t$, the term in parenthesis becomes a derivative, and the sum is upgraded to an integral over position. Defining new fields and constants
+
+\begin{align}
+\pi(x, t) = \epsilon p(x, t), \quad \phi(x, t) = q(x, t), \quad \rho = \frac{m}{\epsilon}, \quad \beta = \epsilon \alpha
+\end{align}
+
+giving the Hamiltonian
+
+\begin{align}
+H = \int_{0}^{L} d x\left(\frac{\pi(x)^{2}}{2 \rho}+\frac{\beta}{2}\left(\frac{\partial \phi}{\partial x}\right)^{2}\right)
+\end{align}
+
+Again, transforming to Fourier space (keeping in mind that we must use a discrete Fourier transform due to the periodic boundary conditions)
+
+\begin{align}
+\pi(x, t) = \frac{1}{\sqrt{L}} \sum_{j=-\infty}^{\infty} e^{-i k_{j} x} \tilde{\pi}\left(k_{j}, t\right), \quad
+\phi(x, t) = \frac{1}{\sqrt{L}} \sum_{j=-\infty}^{\infty} e^{-i k_{j} x} \tilde{\phi}\left(k_{j}, t\right)
+\end{align}
+
+where now, the momenta are defined by
+
+\begin{align}
+k_{j} &\equiv \frac{2 \pi j}{L}
+\end{align}
+
+since we take $N \rightarrow \infty$ and $\epsilon \rightarrow 0$ while keeping $L$ fixed.
+
+Plugging these into $H$,
+
+\begin{widetext}
+    \begin{equation}
+        \begin{gathered}
+            H = \frac{1}{L} \int_{0}^{L} d x \sum_{j=-\infty}^{\infty} \sum_{j^{\prime}=-\infty}^{\infty} e^{-i x\left(k_{j}+k_{j^{\prime}}\right)}\left[\frac{\tilde{\pi}\left(k_{j}\right) \tilde{\pi}\left(k_{j^{\prime}}\right)}{2 \rho}+\frac{\beta}{2}\left(-i k_{j}\right)\left(-i k_{j^{\prime}}\right) \tilde{\phi}\left(k_{j}\right) \tilde{\phi}\left(k_{j^{\prime}}\right)\right] \\
+= \sum_{j=-\infty}^{\infty}\left[\frac{\left|\tilde{\pi}\left(k_{j}\right)\right|^{2}}{2 \rho}+\frac{\beta k_{j}^{2}}{2}\left|\tilde{\phi}\left(k_{j}\right)\right|^{2}\right] \equiv \sum_{k_{j}=-\infty}^{\infty}\left[\frac{\left|\tilde{\pi}\left(k_{j}\right)\right|^{2}}{2 \rho}+\frac{\rho \omega\left(k_{j}\right)^{2}}{2}\left|\tilde{\phi}\left(k_{j}\right)\right|^{2}\right]
+        \end{gathered}
+    \end{equation}
+\end{widetext}
+
+where
+
+\begin{align}
+\omega\left(k_{j}\right)^{2} = \frac{\beta}{\rho} k_{j}^{2} \equiv c_{s}^{2} k_{j}^{2}
+\end{align}
+
+We again play the same game with upgrading position/momentum variables to operators and defining position and momentum space creation/annihilation operators such that
+
+\begin{align}
+a(x) = \frac{1}{\sqrt{L}} \sum_{j=-\infty}^{\infty} e^{-i k_{j} x} \tilde{a}\left(k_{j}\right), \quad
+a(x)^{\dagger} = \frac{1}{\sqrt{L}} \sum_{j=-\infty}^{\infty} e^{i k_{j} x} \tilde{a}\left(k_{j}\right)^{\dagger}
+\end{align}
+
+It is easy to see that these satisfy the correct commutation relations, as before.
+
+Again, we create a single-quanta state at point $x$ and want to find the amplitude of finding it at point $y$ after time $t$. This amplitude is now given by
+
+\begin{align}
+\left\langle\psi(y)\left|e^{-i H t}\right| \psi(x)\right\rangle = \frac{1}{L} \sum_{j=-\infty}^{\infty} e^{i k_{j}(x-y)} e^{-i \omega\left(k_{j}\right) t} 
+= \frac{1}{L} \sum_{j=-\infty}^{\infty} e^{i k_{j}(x-y)} e^{-i\left|k_{j}\right| c_{s} t}
+\end{align}
+
+This sum can be evaluated exactly to find
+
+\begin{widetext}
+    \begin{equation}
+        \boxed{K(x, y ; t) = \left\langle\psi(y)\left|e^{-i H t}\right| \psi(x)\right\rangle 
+= \frac{i}{L} \frac{\sin \left(2 \pi c_{s} t / L\right)}{\cos \left(2 \pi c_{s} t / L\right)-\cos (2 \pi(x-y) / L)}}
+    \end{equation}
+\end{widetext}
+
+Note that as we take $L \rightarrow \infty$, this reduces to
+
+\begin{align}
+K(x, y ; t) = \frac{2 i c_{s} t}{(x-y)^{2}-c_{s}^{2} t^{2}}
+\end{align}
+A comment is in order about how to interpret this. If we take $K(x, y ; t)$ at face value, then it gives some distribution around the ring which is non-zero everywhere. However, we need to be careful. Remember that this is an amplitude, meaning that when we take the magnitude squared, we should find a probability, which should never exceed one. Looking at our expression for the amplitude, we see that, not only will the probability be greater than one in several places, but it in fact diverges at the two poles, $x-y= \pm c_{s} t$ ! To get this to behave like a probability, we should normalize our states so that it is bounded between zero and one, and so that the total probability over the whole ring is one. To do this, we essentially will need to divide everything by an infinite factor (because of the divergences at the poles), which will kill off any finite contribution. This leaves only the contributions from the two poles, which, of course, describes a point particle travelling around the ring at the speed of sound $c_{s}$ (a phonon). It seems that a theory of quantum fields describes the movement of particles!
+
+\newpage
+
+
+\end{document}
+%
+% ****** End of file apssamp.tex ******

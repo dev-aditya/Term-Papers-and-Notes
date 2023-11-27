@@ -1,0 +1,212 @@
+\documentclass{beamer} 
+\usepackage{babel}
+\usepackage{caption}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{graphicx}
+\usepackage{soul}
+\usepackage[utf8]{inputenc}
+
+\usepackage{hyperref}
+\usepackage{xstring}
+\graphicspath{{./images/}}
+
+
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{naturalnames}{hyperref}
+% \captionsetup[table]{font=scriptsize}
+
+\usepackage{booktabs}
+\usepackage{csquotes}
+%%
+% load layout
+\usepackage{theme}
+\setUPCLayout{draft,newlogo}
+\newcommand{\nologo}{\setbeamertemplate{logo}{}} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[backend=biber,  style=alphabetic,  sorting=nty,]{biblatex}
+\addbibresource{ref.bib}
+% Info %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% title
+		\title{Accidental Symmetry of Hydrogen Atom}	
+	% author 
+    % (In the mandatory argument "{}", separate multiple
+    % authors with "\and" - use "\\" for better author name formatting
+    % in the title page. In the optional argument "[]" include all
+	% author names, with no "\and" or text formatting macros.)
+	% Example: 
+    \author[]{Aditya Dev \\ MS19022}
+	%\author[Abbr]{Aditya Dev}
+    % Address
+   \subtitle{\textsc{IDC412 Seminar Delivery}}
+   \logo{\AddToShipoutPictureFG{
+      \AtPageMyLowerLeft{{\includegraphics[height=0.7cm]{images/iiser_logo.png}}}
+    }}
+	\institute{{Email: ms19022@iisermohali.ac.in\\}
+	\vspace{10pt}
+	\textsc{{\includegraphics[height=2cm]{images/iiser_logo.png}} \\\vspace{5pt}
+	    Indian Institute of Science Education and Research} \\ 
+	    Mohali 
+         }
+	% date
+		\presentationDate{15 February, 2023}
+%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% typeset front slides
+
+\typesetFrontSlides
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   SECTION 1
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+\subsection{The Hydrogen Atom!}
+
+
+\begin{frame}{Degeneracy of Hydrogen and Symmetry of the Hamiltonian}
+
+In quantum mechanics, the bound-state solution of the hydrogen atom is known to have a $n^2$ degeneracy in the energy levels.  The Hamiltonian is given as:
+\begin{equation}\label{eq:hamiltonian}
+\hat{H} = \dfrac{\Vec{p}^2}{2m} - \dfrac{k \Vec{r}}{r}
+\end{equation}
+We also know that in quantum mechanics, ``degeneracy implies symmetry". Observe that the Hamiltonian is invariant under rotations in 3D. 
+\end{frame}
+\begin{frame}{$SO(3)$ and Rotational Invariance}
+ For example; invariance under rotation in 3D (associated group $SO(3)$) leads to conservation of angular momentum, which translates into $2 l +1$ degeneracy of angular momentum eigenstates. 
+
+We notice $\sum_{l = 00}^{n-1} (2 l +1) = n$. And the hydrogen atom appears to have degeneracy 
+$$n^2 = \sum_{l_1 = 0}^{n-1} \sum_{l_2 = 0}^{n-1}(2 l_1 +1)(2 l_2 +1)$$
+ the occurrence of extra $(2l +1)$ hints at a larger symmetry group. 
+ \begin{center}
+     BUT HOW DO WE FIND THIS SYMMETRY GROUP?
+ \end{center}
+\end{frame}
+
+\subsection{Motivation from classical mechanics and  LRL vector}
+\begin{frame}{Classical Kepler Problem and LRL Vector}
+Let us take some help from the old man (the classical mechanics). 
+
+	In classical Kepler's problem (remember, it has the same Hamiltonian!), we come across a conserved vector quantity termed the ``Laplace- Runge-Lenz"  (LRL) vector which is defined as
+	\begin{equation}\label{eq:lrl-cm}
+	    \Vec{A} = \dfrac{\Vec{p} \times \Vec{L}}{m} - \dfrac{k \Vec{r}}{r}
+	\end{equation}
+	and it is easy to show that $\frac{d \Vec{A}}{dt} = \{\Vec{A}, H\} = 0$. Hence, it is a conserved vector quantity. 
+\end{frame}
+
+
+\section{The Quantum Mechanical Treatment Of LRL vector}
+\subsection{The Pauli approach to Hydrogen atom problem.}
+\begin{frame}{Quantum Mechanics LRL Vector}
+    In quantum mechanics, we define a Hermitian version of the LRL vector, and we define it as:
+    \begin{equation}
+        \label{eq:lrl-qm}
+        \Vec{A} = \dfrac{1}{2m_2} \left[ \Vec{p} \times \Vec{L} - \Vec{L} \times \Vec{p}  \right] -\dfrac{k \Vec{r}}{r}
+    \end{equation}
+    It can be shown that the algebra it follows is given as
+    \begin{equation*}
+    \begin{aligned}
+     [L_i, H] = 0 &&  [A_i, H] = 0
+    \end{aligned}
+    \end{equation*}
+    \begin{equation}\label{eq:commut-unmod}
+    \begin{gathered}
+       [L_i, A_j] = i \hbar \epsilon_{ijk} A_k\\
+        [L_i, L_j] = i \hbar \epsilon_{ijk} L_k \\
+        [A_i, A_j] = -i \hbar \epsilon_{ijk} L_k \frac{2}{m_2} H
+    \end{gathered}
+    \end{equation}
+    \textit{Same algebra is followed by Lorentz Group generators, but with a +ve sign for last commutator.}
+\end{frame}
+
+\begin{frame}{Some more useful identities}
+\begin{itemize}
+    \item Some useful relations:
+    \begin{equation}\label{eq:useful-relations}
+    \begin{gathered}
+        \Vec{A} \cdot \Vec{L} = \Vec{L} \cdot \Vec{A} = 0\\
+        A^2 = \Vec{A} \cdot \Vec{A} = k^2 + \dfrac{2}{m_e} H (L^2  + \hbar^2)
+    \end{gathered}
+    \end{equation}
+    We will need them soon to see some beautiful mathematics!!.
+\end{itemize}
+\end{frame}
+\subsection{The $SO(4)$ algebra.}
+\begin{frame}{SO(4) hyperspherical symmetry of bound state solutions}
+    Suppose that there exists a bound state with energy $E < 0$ for the Hamiltonian given in Eq.\ref{eq:hamiltonian}. Let $\mathcal{H}(E)$ be the eigenspace in $\mathcal{H}$ with energy value $E$. We will restrict the action of all of our operators to this eigenspace, and we can multiply Eq. \ref{eq:lrl-qm} with a dimensionful constant to make it the same dimensionally as the angular momentum. In this subspace, we define
+    \begin{equation}
+        \label{eq:lrl-angl}
+        \Tilde{A_i} = \sqrt{\frac{-m}{2E}} A_i
+    \end{equation}
+    we see that $[\Tilde{A_i}] = [\hbar] = [L_i]$. 
+\end{frame}
+
+\begin{frame}{}
+    Using $\Tilde{A_i}$ we define:
+    \begin{equation}
+        \begin{gathered}
+            T_i = \frac{1}{2} (L_i + \Tilde{A}_i)\\
+            S_i = \frac{1}{2} (L_i - \Tilde{A} _i)
+        \end{gathered}
+    \end{equation}
+    and using the commutation relation form Eq. \ref{eq:commut-unmod}, we get
+    \begin{equation}
+    \begin{gathered}
+    [E, T_i] = [E, S_i] = 0\\
+    T^2 = S^2  \\
+    [T_i, S_j] = 0 \\
+    [T_i, T_j] = i \hbar\epsilon_{ijk} T_k  \\ 
+    [S_i, S_j] = i \hbar\epsilon_{ijk} S_k
+    \end{gathered}
+    \end{equation}
+\end{frame}
+\begin{frame}{}
+    From the above commutation relations, it looks like we have two independent ``angular momentum"-like operators (or algebra) in the eigenspace. And if that is the case, then the whole algebra must be: 
+    \[SO(3) \oplus  SO(3) \cong SO(4)\]
+    and this INDEED IS THE CASE!! 
+    
+    Hence, the "accidental symmetry" or "dynamical group" of the hydrogen atom problem is $SO(4)$. Or in other words, the solution set of hydrogen atoms is invariant under rotations in some fictitious 4D. $SO(4)$ is the four dimensional rotation group but does not represent a physical rotation for Hydrogen $\longrightarrow$ this is called a dynamical symmetry
+\end{frame}
+\subsection{Energy Eigenvalues of the Hydrogen Atom}
+\begin{frame}{Energy eigenvalues using the $T^2$  operator}
+Since the above problem has ``angular momentum"-like operators, we can do our usual Schwinger approach of ladder operators for ``angular momentum". Performing the same exercise as in the case of angular momentum or harmonic oscillator. We get for some $\psi \in \mathcal{H}(E)$, where $\psi$ is the simultaneous eigenstate of $T, S_z, T_z$
+    \begin{equation}
+        \label{eq:t-sq}
+        T^2  \psi = t (t+1) \hbar^2 \psi, \text{  ,where }t \in \{ 0, \frac{1}{2}, 1, \hdots\}
+    \end{equation}
+    
+    Using Eq. \ref{eq:lrl-angl} and Eq. \ref{eq:useful-relations} we can check that
+    \begin{equation}
+        \Tilde{A}^2 + L^2 = 4T^2 = \hbar^2 - \frac{k^2 m_e}{2E}
+    \end{equation}
+\end{frame}
+\begin{frame}{}
+    i.e., the action of $T^2$ on $\mathcal{H}(E)$ is simply multiplication by the $\frac{\hbar^2}{4} - \frac{k^2 m_e}{8E}$ and by our claim from Eq. \ref{eq:t-sq} we need
+    \begin{equation}
+        \begin{gathered}
+            t(t+1) \hbar^2 = \frac{\hbar^2}{4} - \frac{k^2 m_e}{8E}\\
+            \boxed{E_{2t +1} = \dfrac{-m_e k^2}{2 \hbar^2 (2t +1)^2}}
+        \end{gathered}
+    \end{equation}
+    we identify the principal quantum number $n$ as $2t+1$. Furthermore, for a given value of $t$, our previous claim tells us that there are exactly $(2t +1)^2 = n^2$  linearly independent states in $\mathcal{H}(E_n)$. \nocite{*}
+\end{frame}
+\section{References}
+\begin{frame}{References}
+
+\printbibliography
+
+\end{frame}
+
+%%
+\end{document}
